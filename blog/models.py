@@ -1,14 +1,16 @@
 from django.db import models
+from django.db.models.fields import CharField, TextField
+from django.db.models.fields.related import ForeignKey
 from django.urls import reverse
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.ForeignKey(
+    title: CharField = models.CharField(max_length=200)
+    author: ForeignKey = models.ForeignKey(
         "auth.User",
         on_delete=models.CASCADE,
     )
-    body = models.TextField()
+    body: TextField = models.TextField()
 
     def __str__(self):
         return self.title
